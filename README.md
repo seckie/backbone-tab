@@ -9,8 +9,11 @@ Tab class extends Backbone.js's View object that forms a tab navigation UI.
 ## Usage
 
 ### HTML example
-Prepare HTML like this.
 
+Required elements are tab navigation link list, whole contents wrapper (ex: &lt;div class="contents"/&gt;) and each contents with wrapper (ex: &lt;div class="section"/&gt;).
+Navigation link element must link to each contents ID.
+
+	<div id="tabsection">
 	<div class="nav">
 	<ul>
 	<li class="tab1"><a href="#section1" class="tabstyle">Section 1</a></li>
@@ -30,24 +33,20 @@ Prepare HTML like this.
 			<!-- some contents -->
 		<!--/#section3--></div>
 	<!--/.contents--></div>
+	<!--/.tabsection--></div>
 
-Required elements are tab navigation link list, whole contents wrapper (ex: &lt;div class="contents"/&gt;) and each contents with wrapper (ex: &lt;div class="section"/&gt;).
-Navigation link element must link to each contents ID.
 
 ### JavaScript example
-Select tab navigation links with jQuery selector and call "tabUI" method when DOM is ready.
 
-	$(function() {
-		// DOM ready
-		// $(some selector).tabUI()
-		$('div.nav a').tabUI({
-			classNamePostfix: '_on',
-			onClassName: 'on',
-			offClassName: 'off',
-			defaultIndex: 0,
-			effect: true
-		});
+Create instance from $.Tab constructor.
+
+	var tab = new $.Tab({
+	  el: '#tabsection .nav a',
+	  effect: false
 	});
+
+And you can override "show" method of instance.
+
 
 ## Options
 <table border="1">
@@ -63,19 +62,9 @@ Select tab navigation links with jQuery selector and call "tabUI" method when DO
 </thead>
 <tbody>
 <tr>
-<td>classNamePostfix</td>
-<td>&quot;&quot;</td>
-<td>String that will be joined to existing class name when the tab is activated.</td>
-</tr>
-<tr>
 <td>onClassName</td>
 <td>&quot;on&quot;</td>
 <td>Class name that will be added to the activated tab.</td>
-</tr>
-<tr>
-<td>offClassName</td>
-<td>&quot;off&quot;</td>
-<td>Class name that will be added to the non activated tab.</td>
 </tr>
 <tr>
 <td>defaultIndex</td>
